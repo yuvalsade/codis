@@ -16,5 +16,5 @@ type Topom struct {
 }
 
 func (t *Topom) Encode() []byte {
-	return jsonEncode(t)
+	return JsonEncode(t)
 }

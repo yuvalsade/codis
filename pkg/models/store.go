@@ -64,7 +64,7 @@ func LoadTopom(client Client, product string, must bool) (*Topom, error) {
 		return nil, err
 	}
 	t := &Topom{}
-	if err := jsonDecode(t, b); err != nil {
+	if err := JsonDecode(t, b); err != nil {
 		return nil, err
 	}
 	return t, nil
@@ -149,7 +149,7 @@ func (s *Store) LoadSlotMapping(sid int, must bool) (*SlotMapping, error) {
 		return nil, err
 	}
 	m := &SlotMapping{}
-	if err := jsonDecode(m, b); err != nil {
+	if err := JsonDecode(m, b); err != nil {
 		return nil, err
 	}
 	return m, nil
@@ -171,7 +171,7 @@ func (s *Store) ListGroup() (map[int]*Group, error) {
 			return nil, err
 		}
 		g := &Group{}
-		if err := jsonDecode(g, b); err != nil {
+		if err := JsonDecode(g, b); err != nil {
 			return nil, err
 		}
 		group[g.Id] = g
@@ -185,7 +185,7 @@ func (s *Store) LoadGroup(gid int, must bool) (*Group, error) {
 		return nil, err
 	}
 	g := &Group{}
-	if err := jsonDecode(g, b); err != nil {
+	if err := JsonDecode(g, b); err != nil {
 		return nil, err
 	}
 	return g, nil
@@ -211,7 +211,7 @@ func (s *Store) ListProxy() (map[string]*Proxy, error) {
 			return nil, err
 		}
 		p := &Proxy{}
-		if err := jsonDecode(p, b); err != nil {
+		if err := JsonDecode(p, b); err != nil {
 			return nil, err
 		}
 		proxy[p.Token] = p
@@ -225,7 +225,7 @@ func (s *Store) LoadProxy(token string, must bool) (*Proxy, error) {
 		return nil, err
 	}
 	p := &Proxy{}
-	if err := jsonDecode(p, b); err != nil {
+	if err := JsonDecode(p, b); err != nil {
 		return nil, err
 	}
 	return p, nil
@@ -245,7 +245,7 @@ func (s *Store) LoadSentinel(must bool) (*Sentinel, error) {
 		return nil, err
 	}
 	p := &Sentinel{}
-	if err := jsonDecode(p, b); err != nil {
+	if err := JsonDecode(p, b); err != nil {
 		return nil, err
 	}
 	return p, nil

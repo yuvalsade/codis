@@ -30,5 +30,5 @@ type GroupServer struct {
 }
 
 func (g *Group) Encode() []byte {
-	return jsonEncode(g)
+	return JsonEncode(g)
 }

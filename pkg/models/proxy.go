@@ -25,5 +25,5 @@ type Proxy struct {
 }
 
 func (p *Proxy) Encode() []byte {
-	return jsonEncode(p)
+	return JsonEncode(p)
 }

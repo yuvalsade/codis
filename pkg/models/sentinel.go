@@ -10,5 +10,5 @@ type Sentinel struct {
 }
 
 func (p *Sentinel) Encode() []byte {
-	return jsonEncode(p)
+	return JsonEncode(p)
 }
