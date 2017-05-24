@@ -15,6 +15,29 @@ type Topom struct {
 	Sys string `json:"sys"`
 }
 
+func (t *Topom) String() string {
+	return JsonString(t)
+}
+
 func (t *Topom) Encode() []byte {
 	return JsonEncode(t)
+}
+
+func (t *Topom) Decode(b []byte) error {
+	return JsonDecode(t, b)
+}
+
+type TopomConfig struct {
+	SlotMappings []*SlotMapping
+	GroupMap     map[int]*Group
+	ProxyMap     map[string]*Proxy
+	Sentinel     *Sentinel
+}
+
+func (c *TopomConfig) Encode() []byte {
+	return GzipGobEncode(c)
+}
+
+func (c *TopomConfig) Decode(b []byte) error {
+	return GzipGobDecode(c, b)
 }
