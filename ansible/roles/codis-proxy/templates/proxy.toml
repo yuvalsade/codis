@@ -10,7 +10,7 @@ product_name = "{{ product_name }}"
 product_auth = "{{ product_auth }}"
 
 # Set bind address for admin(rpc), tcp only.
-admin_addr = "{{ proxy_admin_addr }}"
+admin_addr = "{{ ansible_default_ipv4.address }}:{{ proxy_admin_port }}"
 
 # Set bind address for proxy, proto_type can be "tcp", "tcp4", "tcp6", "unix" or "unixpacket".
 proto_type = "tcp4"
