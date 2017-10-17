@@ -46,7 +46,5 @@
           server_failure_limit: 1
           servers:
             group: redis
-            port: "{{ redis_port }}"
-            interface: "{{ redis_interface }}"
   roles:
     - twemproxy

@@ -7,7 +7,7 @@
   {{ key }}: {{ value }}
 {%     else %}
 {%       for srv in groups[value.group] %}
-{%- set _ = _servers.append(hostvars[srv]['ansible_' + value.interface].ipv4.address + ":" + value.port) -%}
+{%- set _ = _servers.append(hostvars[srv]['redis_interface'] + ":" + hostvars[srv]['redis_port']) -%}
 {%       endfor %}
 {%     endif %}
 {%   endfor %}
