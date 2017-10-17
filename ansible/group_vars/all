@@ -1,5 +1,5 @@
 ---
-codis_dir: /home/codis/codis
+codis_dir: /git/codis-bin
 
 coordinator_name: filesystem
 
