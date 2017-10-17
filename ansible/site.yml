@@ -4,7 +4,7 @@
   tasks:
   - name: set base facts
     set_fact:
-      dashboard_addr: "{{ hostvars[groups['codis-dashboard-servers'][0]] }}:{{ dashboard_port }}"
+      dashboard_addr: "{{ hostvars[groups['codis-dashboard-servers'][0]].ansible_default_ipv4.address }}:{{ dashboard_port }}"
   - name: add codis group
     group:
         name: codis
