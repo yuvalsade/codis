@@ -19,8 +19,8 @@
   tasks:
   - set_fact:
       redis_interface: "{{ ansible_default_ipv4.address }}"
-      redis_bind: "{{ ansible_default_ipv4.address }}"
-      redis_bind1: 127.0.0.1
+      #redis_bind: "{{ ansible_default_ipv4.address }}"
+      redis_bind1: 0.0.0.0
       redis_port: 6379
       redis_user: redis
 
