@@ -19,5 +19,6 @@
   vars:
     - redis_bind: "{{ ansible_default_ipv4.address }}"
     - redis_user: redis
+    - redis_bind1: 127.0.0.1
   roles:
     - redis

@@ -6,6 +6,9 @@ pidfile {{ redis_pidfile }}
 dir {{ redis_dir }}
 port {{ redis_port }}
 bind {{ redis_bind }}
+{% if redis_bind1 -%}
+bind {{ redis_bind1 }}
+{% endif -%}
 {% if redis_socket_path -%}
 unixsocket {{ redis_socket_path }}
 unixsocketperm {{ redis_socket_perm }}
