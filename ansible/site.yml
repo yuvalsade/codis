@@ -49,4 +49,4 @@
             port: "{{ redis_port }}"
             interface: "{{ redis_interface }}"
   roles:
-    - redis
+    - twemproxy
