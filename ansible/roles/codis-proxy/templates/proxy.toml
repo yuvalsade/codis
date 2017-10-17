@@ -6,8 +6,8 @@
 ##################################################
 
 # Set Codis Product Name/Auth.
-#product_name = "{{ product_name }}"
-#product_auth = "{{ product_auth }}"
+product_name = "{{ product_name }}"
+product_auth = "{{ product_auth }}"
 
 # Set bind address for admin(rpc), tcp only.
 admin_addr = "{{ ansible_default_ipv4.address }}:{{ proxy_admin_port }}"
