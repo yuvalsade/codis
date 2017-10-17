@@ -14,11 +14,37 @@
         group: redis
         createhome: yes
     
-- name: codis environment init
+- name: install redis
   hosts: redis
   vars:
     - redis_bind: "{{ ansible_default_ipv4.address }}"
     - redis_user: redis
     - redis_bind1: 127.0.0.1
+    - redis_port: 6379
+  roles:
+    - redis
+    
+- name: set base facts
+    set_fact:
+      redis_interface: "{{ ansible_default_ipv4.address }}"
+      redis_port: 6379
+
+ 
+- name: install twproxy
+  hosts: redis
+  vars:
+    - twemproxy_pools:
+        redis:
+          listen: 0.0.0.0:6380
+          hash: fnv1a_64
+          distribution: ketama
+          auto_eject_hosts: "true"
+          redis: "true"
+          server_retry_timeout: 30000
+          server_failure_limit: 1
+          servers:
+            group: redis
+            port: "{{ redis_port }}"
+            interface: "{{ redis_interface }}"
   roles:
     - redis
