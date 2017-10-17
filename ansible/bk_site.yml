@@ -1,0 +1,54 @@
+---
+- hosts: all
+  gather_facts: True
+  tasks:
+  - name: set base facts
+    set_fact:
+      dashboard_addr: "{{ hostvars[groups['codis-dashboard-servers'][0]].ansible_default_ipv4.address }}:{{ dashboard_port }}"
+  - name: add codis group
+    group:
+        name: codis
+        state: present
+  - name: add codis user 
+    user:
+        name: codis
+        state: present
+        append: yes
+        group: codis
+        createhome: yes
+    
+- name: codis environment init
+  hosts: all
+  remote_user: codis
+  roles:
+    - common
+
+- name: Install codis-dashboard
+  hosts: codis-dashboard-servers
+  remote_user: codis
+  roles:
+    - codis-dashboard
+
+- name: Install codis-proxy
+  hosts: codis-proxy-servers
+  remote_user: codis
+  roles:
+    - codis-proxy
+
+- name: Install codis-server
+  hosts: codis-servers
+  remote_user: codis
+  roles:
+    - codis-server
+
+- name: Install redis-sentinel
+  hosts: redis-sentinel-servers
+  remote_user: codis
+  roles:
+    - redis-sentinel
+
+- name: Install codis-fe
+  hosts: codis-fe-servers
+  remote_user: codis
+  roles:
+    - codis-fe
