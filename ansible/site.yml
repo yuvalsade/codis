@@ -25,6 +25,7 @@
     - redis
 
 - name: set base facts
+  hosts: redis
   set_fact:
     redis_interface: "{{ ansible_default_ipv4.address }}"
     redis_port: 6379
