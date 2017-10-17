@@ -6,6 +6,8 @@
 *.tmp
 *.rdb
 
+ansible/fact_caching
+
 .DS_Store
 .htaccess
 

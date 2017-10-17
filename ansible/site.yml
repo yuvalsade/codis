@@ -1,4 +1,18 @@
 ---
+- hosts: all
+  tasks:
+  - name: add codis group
+    group:
+        name: codis
+        state: present
+  - name: add codis user 
+    user:
+        name: codis
+        state: present
+        append: yes
+        group: codis
+        createhome: yes
+    
 - name: codis environment init
   hosts: all
   remote_user: codis
