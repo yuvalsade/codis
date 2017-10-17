@@ -81,10 +81,10 @@ redis_db_filename: "dump.rdb"
 
 # How frequently to snapshot the database to disk
 # e.g. "900 1" => 900 seconds if at least 1 key changed
-redis_save:
-  - 900 1
-  - 300 10
-  - 60 10000
+redis_save: []
+# - 900 1
+# - 300 10
+# - 60 10000
 redis_stop_writes_on_bgsave_error: "yes"
 redis_rdbcompression: "yes"
 redis_rdbchecksum: "yes"
