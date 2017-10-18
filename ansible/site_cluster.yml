@@ -36,8 +36,9 @@
   tasks:
     - command: "redis-cli -h {{ ansible_default_ipv4.address }} -p {{ redis_port}} CLUSTER MEET {{ hostvars[item].ansible_default_ipv4.address }} {{ hostvars[item].redis_port }}  "
       name: Exec redis-cli
+      with_items: "{{ groups.redis[1:] }}"
 
-- name: join nodes
+- name: create slots
   hosts: redis[0]
   tasks:
     - command: "redis-cli -h {{ ansible_default_ipv4.address }} -p {{ redis_port}} cluster info | grep cluster_slots_assigned: | awk -F':' '{print $2}'"
@@ -47,5 +48,5 @@
     - command: "for slot in {0..16383}; do redis-cli -h {{ ansible_default_ipv4.address }} -p {{ redis_port}} CLUSTER ADDSLOTS $slot ; done;"
       name: Exec redis-cli add slots
       when: slots.stdout != "16384"
-      with_items: "{{ groups.redis[1:] }}"
+      
 
