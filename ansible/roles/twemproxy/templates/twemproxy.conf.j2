@@ -7,13 +7,13 @@
   {{ key }}: {{ value }}
 {%     else %}
 {%       for srv in groups[value.group] %}
-{%- set _ = _servers.append(hostvars[srv]['redis_interface'] + ":" + hostvars[srv]['redis_port']|string) -%}
+{%- set _ = _servers.append(hostvars[srv]['redis_interface'] + ":" + hostvars[srv]['redis_port']|string) + ":1 " +  hostvars[srv]['ansible_hostname']  -%}
 {%       endfor %}
 {%     endif %}
 {%   endfor %}
 {% endfor %}
   servers:
 {% for srv in _servers %}
-    - {{ srv }}:127
+    - {{ srv }}
 {% endfor %}
 
