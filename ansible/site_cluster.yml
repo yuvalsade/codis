@@ -46,5 +46,5 @@
 
     - command: "for slot in {0..16383}; do redis-cli -h {{ ansible_default_ipv4.address }} -p {{ redis_port}} CLUSTER ADDSLOTS $slot ; done;"
       name: Exec redis-cli add slots
-      when: slots.stdout != 16384
+      when: slots.stdout != "16384"
 
