@@ -52,7 +52,7 @@
     state: directory
     owner: "{{ redis_user }}"
 
-- name: install redis
+- name: install redis bump version
   command: make PREFIX={{ redis_install_dir }} install
   args:
     chdir: /usr/local/src/redis-{{ redis_version }}
