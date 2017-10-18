@@ -1,0 +1,40 @@
+---
+- hosts: all
+  gather_facts: True
+  tasks:
+  - name: add redis group
+    group:
+        name: redis
+        state: present
+  - name: add redis user 
+    user:
+        name: redis
+        state: present
+        append: yes
+        group: redis
+        createhome: yes
+
+- name: set base facts
+  hosts: redis
+  tasks:
+  - set_fact:
+      redis_interface: "{{ ansible_default_ipv4.address }}"
+      #redis_bind: "{{ ansible_default_ipv4.address }}"
+      redis_bind1: 0.0.0.0
+      redis_port: 6379
+      redis_user: redis
+      twemproxy_stats_addr: "{{ ansible_default_ipv4.address }}"
+
+- name: install redis
+  hosts: redis
+  roles:
+    - redis-cluster
+
+ 
+- name: join nodes
+  hosts: redis[0]
+  tasks:
+    - command: "redis-cli -h {{ ansible_default_ipv4.address }} -p {{ redis_port}} MEET {{ hostvars[item].ansible_default_ipv4.address }}:{{ hostvars[item].redis_port }}  "
+      with_items: groups.redis!groups.redis[0]
+  roles:
+    - twemproxy
