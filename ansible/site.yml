@@ -37,7 +37,7 @@
     - twemproxy_pools:
         redis:
           listen: 0.0.0.0:6380
-          hash: marmur
+          hash: fnv1a_64
           distribution: ketama
           auto_eject_hosts: "true"
           redis: "true"
