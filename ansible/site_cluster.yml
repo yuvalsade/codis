@@ -29,11 +29,14 @@
   hosts: redis
   roles:
     - redis-cluster
-
  
 - name: join nodes
   hosts: redis[0]
   tasks:
+    - gem:
+        name: redis
+        state: latest
+
     - command: "redis-cli -h {{ ansible_default_ipv4.address }} -p {{ redis_port}} CLUSTER MEET {{ hostvars[item].ansible_default_ipv4.address }} {{ hostvars[item].redis_port }}  "
       name: Exec redis-cli
       with_items: "{{ groups.redis[1:] }}"
