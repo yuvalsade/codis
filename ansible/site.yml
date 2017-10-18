@@ -23,6 +23,7 @@
       redis_bind1: 0.0.0.0
       redis_port: 6379
       redis_user: redis
+      twemproxy_stats_addr: "{{ ansible_default_ipv4.address }}"
 
 - name: install redis
   hosts: redis
