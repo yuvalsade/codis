@@ -49,6 +49,7 @@
     
     - name: link redis-trib.rb
       command: "ln {{ redis_trib_path }} /usr/bin/redis-trib.rb"
+      when: gem_path_find.stdout_lines|length == 1
       become: true
 
       
